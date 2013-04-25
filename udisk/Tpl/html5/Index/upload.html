@@ -1,0 +1,28 @@
+<div>
+	<li class="qq">上传成功！提取码为<em style="color:red;font-style:normal;font-size:20px;font-weight:bolder;">{$result['key']}</em>请牢记！</li>
+	<li>发送到Email: <input type="text" name="mail" id="mail"><input type="button" value="发送"></li>
+	<li>您上传的文件名：{$result['filename']}</li>
+	<li>文件大小：{$result['size']}KB</li>
+	<li style="text-align: center;">扫描二维码获取下载地址<br><img style="width:170px;height:170px;" src="http://qr.liantu.com/api.php?&bg=E6E6E6&fg=038BFC&logo=http%3a%2f%2f0.yuollib.duapp.com%2fimg%2flogo_gray.gif&text={$result['durl']}" title="扫描二维码获取下载地址" alt="扫描二维码下载"></li>
+</div>
+<script type="text/javascript">
+   /*
+    * 请修改下面js对象的内容以完成定制
+    * 内容：请定制为需要提醒用户的内容,
+    * 时间：请定制为事件发生的时间，格式为：年-月-日 时:分 
+    * advance：请定制为需要提前提醒用户的时间，0为准时提醒
+    * url： 请定制为提醒用户访问的url链接
+    * icon： 生成的icon的大小，可选值为1，2，3，尺寸分别为90*24，63*24，50*16
+    * 注意：如果不使用标准接口，而是按需要自己生成链接地址
+    * 请用encodeURIComponent对内容和时间进行编码。
+    */ 
+var __qqClockShare = {
+   content: "长大云U盘提醒：尊敬的用户，您在长大云U盘[http://{$result['site']}]上储存文件的提取码为{$result['key']}，请及时提取。",
+   time: "{$result['time']}",
+   advance: 0,
+   url: "http://{$result['site']}",
+   icon: "3_1"
+};
+$('.qq').append('<a href="http://qzs.qq.com/snsapp/app/bee/widget/open.htm#content=' + encodeURIComponent(__qqClockShare.content) +'&time=' + encodeURIComponent(__qqClockShare.time) +'&advance=' + __qqClockShare.advance +'&url=' + encodeURIComponent(__qqClockShare.url) + '" target="_blank"><img src="http://i.gtimg.cn/snsapp/app/bee/widget/img/' + __qqClockShare.icon + '.png" style="border:0px;"/></a>');
+
+</script>

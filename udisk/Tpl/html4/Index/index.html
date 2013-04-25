@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="utf-8" />
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+        <title>在线云U盘444444444444444</title>
+      <style>
+          *{
+              margin: 0;
+              padding: 0;
+              font-size: 13px;
+              font-family: "微软雅黑";
+          }
+
+          img{
+            border: none;
+          }
+          a{
+            text-decoration:none;
+            color: #069;
+            cursor: pointer;
+          }
+          a:hover{
+            color: #FF0;
+          }
+          #nav_bar a {
+            color:#FFF;
+          }
+          #nav_bar a:hover{
+            color:#000;
+          }
+          #nav_bar {
+            position: relative;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 30px;
+            background-color: #038AFC;
+            z-index: 98;
+            box-shadow:3px 3px 3px #666;
+            white-space:nowrap;
+            overflow:hidden;
+            color: #FFF;
+          }
+
+          #nav_bar a {
+            color:#FFF;
+          }
+          #nav_bar a:hover{
+            color: #FF0;
+          }
+
+          .navbarlist{
+            display:inline-block;
+            margin-right: 13%;
+            margin-top: 7px;
+            float: right;
+            line-height: 20px;
+          }
+          .navbarlist li{
+            display:inline-block;
+            margin-left:5px;
+            margin-right:5px;
+            float: left;
+          }
+          .navbarlist ul{
+            display:none;
+          }
+
+
+          .upload_form_cont {
+              color: #000;
+          }
+
+          #dropArea {
+              background-color: #DDDDDD;
+              border: 3px dashed #000000;
+              font-size: 48px;
+              height: 170px;
+              margin: 0px auto;
+              margin-top: 10px;
+              position: relative;
+              text-align: center;
+              width: 512px;
+              line-height: 3;
+          }
+          #dropArea.hover {
+              background-color: #CCCCCC;
+          }
+          #dropArea.uploading {
+              background: #EEEEEE url(Public/img/loading.gif) center 30% no-repeat;
+          }
+
+          .info {
+              position: relative;
+              border: 1px solid #DDDDDD;
+              height: auto;
+              margin: 0px auto;
+              margin-top: 10px;
+              width: 500px;
+          }
+          .info div {
+              font-size: 14px;
+          }
+          .info canvas {
+              position: relative;
+              display: block;
+              margin: 0 auto;
+          }
+          .info #url {
+              width: 400px;
+          }
+
+          #result .s, #result .f {
+              font-size: 12px;
+              margin-bottom: 10px;
+              padding: 10px;
+              border-radius:10px;
+              -moz-border-radius:10px;
+              -webkit-border-radius:10px;
+          }
+          #result .s {
+              background-color: #77fc9f;
+          }
+          #result .f {
+              background-color: #fcc577;
+          }
+          #result li{
+              list-style: none;
+          }
+
+      </style>
+      <script src="./Public/js/jquery-1.9.0.min.js"></script>
+  </head>
+    <body>
+      <include file="./udisk/Tpl/html5/nav_head.html" />
+      <div class="upload_form_cont">
+          <div id="dropArea">文件拖到这里</div>
+          <div class="info">
+              <input type="hidden" id="count" name="">
+              <canvas width="450" height="20"></canvas>
+              <div id="result">
+
+              </div>
+          </div>
+      </div>
+      <div class="progressbar" data-perc="{$disk['percent']}">
+        <div class="bar" style="width: 0px;">
+          <span></span>
+        </div>
+        <div style="position: fixed;bottom:0;color:white;">总配额：{$disk['vol']}G;当前使用：{$disk['used']}M;剩：{$disk['free']}M</div>
+      </div>
+    </body>
+    <script src="./Public/js/upload.js"></script>
+    <link rel="stylesheet" href="./Public/css/progressbar.css">
+    <script src="./Public/js/progressbar.js"></script>
+</html>
