@@ -1,5 +1,8 @@
 <?php
 class IndexAction extends Action {
+	public function __construct(){
+		$this->assign('root', C('WWW_PATH'));
+	}
     public function index(){
     	import('@.disk.diskvol');
     	$diskstate=diskvol::state();
@@ -12,6 +15,7 @@ class IndexAction extends Action {
     	$this->display();
     }
     public function upload(){
+//         dump($_FILES);
     	import('@.disk.store');
     	try {
     		$result=store::UPLOAD();

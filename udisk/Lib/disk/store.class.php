@@ -22,7 +22,7 @@ class store{
     	
     	$this->fileInfo=$u->getUploadFileInfo();
     	
-//     	FFDEBUG($result);
+    	// FFDEBUG($result);
     	if(!$result){
     		throw new Exception('上传失败！');
     	}
@@ -54,7 +54,6 @@ class store{
 		$upload=new store();
 		import('@.disk.chkIsUpload');
 		if ($chkRst=chkIsUpload::CHK($upload->fileInfo[0]['hash'])) {
-// 			dump($chkRst);
 			unlink(C('STORE_PATH').$upload->fileInfo[0]['savename']);//移除文件
 			return array(
 					'key'=>$chkRst['key'],

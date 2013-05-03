@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-        <title>在线云U盘</title>
+        <title>云U盘</title>
       <style>
           *{
               margin: 0;
@@ -75,25 +75,33 @@
           #dropArea {
               background-color: #DDDDDD;
               border: 3px dashed #000000;
-              font-size: 48px;
               height: 170px;
               margin: 0px auto;
-              margin-top: 10px;
               position: relative;
+              top: 10px;
               text-align: center;
               width: 512px;
               line-height: 3;
+          }
+          #dropArea a{
+              position: absolute;
+              font-size: 30px;
+              left: 33%;
+              top: 35%;
+          }
+          #dropArea a:hover{
+              color: #005D8B;
           }
           #dropArea.hover {
               background-color: #CCCCCC;
           }
           #dropArea.uploading {
-              background: #EEEEEE url(Public/img/loading.gif) center 30% no-repeat;
+              /*background: #EEEEEE url(Public/img/loading.gif) center 30% no-repeat;*/
           }
 
           .info {
               position: relative;
-              border: 1px solid #DDDDDD;
+              /*border: 1px solid #DDDDDD;*/
               height: auto;
               margin: 0px auto;
               margin-top: 10px;
@@ -128,14 +136,32 @@
           #result li{
               list-style: none;
           }
-
+          #btn{
+            position:absolute;
+            left:36%;
+            top:25%;
+            width:30%;
+            height:23%;
+            border: 1px solid blue;
+            background: #1A89F4;
+            cursor: pointer;
+            color: #FFFFFF;
+            box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.76);
+          }
+          #btn:hover{
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.76);
+          }
       </style>
       <script src="./Public/js/jquery-1.9.0.min.js"></script>
   </head>
     <body>
       <include file="./udisk/Tpl/html5/nav_head.html" />
       <div class="upload_form_cont">
-          <div id="dropArea">文件拖到这里</div>
+          <div id="dropArea">
+            <a href="javascript:;">文件拖到这里</a>
+            <button id="btn">点击上传</button>
+            <input style="display:none;" type="file" name="file1" id="file_btn">
+          </div>
           <div class="info">
               <input type="hidden" id="count" name="">
               <canvas width="450" height="20"></canvas>
@@ -154,4 +180,31 @@
     <script src="./Public/js/upload.js"></script>
     <link rel="stylesheet" href="./Public/css/progressbar.css">
     <script src="./Public/js/progressbar.js"></script>
+    <script>
+    /**
+     * 文件上传
+     * @author rex[duguying2008@gmail.com]
+     */
+      ;var rex={};
+      (function(rex) {
+        var destinationUrl="./index.php/index/upload";
+        rex.file=document.getElementById("file_btn");
+        var button=document.getElementsByTagName("button")[0];
+        button.onclick=function(){
+          rex.file.click();
+        };
+        rex.file.onchange=function(){
+          var f=rex.file.files[0];//要上传的文件
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', destinationUrl);
+          var formData = new FormData();
+          formData.append('myfile', f);
+          xhr.onload=function(){
+            $("#result").html(this.responseText);
+          };
+          xhr.send(formData);
+        };
+      })(rex);
+
+    </script>
 </html>

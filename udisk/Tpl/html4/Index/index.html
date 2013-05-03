@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html lang="en" >
-    <head>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
         <meta charset="utf-8" />
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-        <title>在线云U盘444444444444444</title>
+        <title>云U盘44444</title>
       <style>
           *{
               margin: 0;
@@ -87,13 +87,9 @@
           #dropArea.hover {
               background-color: #CCCCCC;
           }
-          #dropArea.uploading {
-              background: #EEEEEE url(Public/img/loading.gif) center 30% no-repeat;
-          }
-
           .info {
               position: relative;
-              border: 1px solid #DDDDDD;
+              /*border: 1px solid #DDDDDD;*/
               height: auto;
               margin: 0px auto;
               margin-top: 10px;
@@ -101,11 +97,6 @@
           }
           .info div {
               font-size: 14px;
-          }
-          .info canvas {
-              position: relative;
-              display: block;
-              margin: 0 auto;
           }
           .info #url {
               width: 400px;
@@ -128,21 +119,99 @@
           #result li{
               list-style: none;
           }
-
+          /*#fform{
+            display: block;
+            width: 100%;
+            height: 100%;
+          }*/
+          #choose_btn{
+            display: block;
+            margin: 0 auto;
+            position: relative;
+            top: 20%;
+          }
+          #submit{
+            display: block;
+            margin: 0 auto;
+            position: relative;
+            top: 35%;
+          }
+          .btn{
+            position:absolute;
+            width:30%;
+            height:23%;
+            border: 1px solid blue;
+            background: #1A89F4;
+            cursor: pointer;
+            color: #FFFFFF;
+          }
       </style>
-      <script src="./Public/js/jquery-1.9.0.min.js"></script>
+      <script type="text/javascript" src="{$root}Public/swfupload/swfupload.js"></script>
+<script type="text/javascript" src="{$root}Public/js/swfupload.queue.js"></script>
+<script type="text/javascript" src="{$root}Public/js/fileprogress.js"></script>
+<script type="text/javascript" src="{$root}Public/js/handlers.js"></script>
+<script type="text/javascript">
+    var swfu;
+
+    window.onload = function() {
+      var settings = {
+        flash_url : "{$root}Public/swfupload/swfupload.swf",
+        upload_url: "{:U('index/upload')}",
+        file_size_limit : "100 MB",
+        file_types : "*.*",
+        file_types_description : "All Files",
+        file_upload_limit : 100,
+        file_queue_limit : 0,
+        custom_settings : {
+          progressTarget : "fsUploadProgress",
+          cancelButtonId : "btnCancel"
+        },
+        debug: false,
+
+        // Button settings
+        // button_image_url: "{$root}Public/images/TestImageNoText_65x29.png",
+        button_width: "65",
+        button_height: "29",
+        button_placeholder_id: "spanButtonPlaceHolder",
+        button_text: '上传文件',
+        button_text_style: ".theFont { font-size: 16; }",
+        button_text_left_padding: 12,
+        button_text_top_padding: 3,
+        
+        // The event handler functions are defined in handlers.js
+        file_queued_handler : fileQueued,
+        file_queue_error_handler : fileQueueError,
+        file_dialog_complete_handler : fileDialogComplete,
+        upload_start_handler : uploadStart,
+        upload_progress_handler : uploadProgress,
+        upload_error_handler : uploadError,
+        upload_success_handler : uploadSuccess,
+        upload_complete_handler : uploadComplete,
+        queue_complete_handler : queueComplete  // Queue plugin event
+      };
+
+      swfu = new SWFUpload(settings);
+       };
+  </script>
   </head>
     <body>
       <include file="./udisk/Tpl/html5/nav_head.html" />
       <div class="upload_form_cont">
-          <div id="dropArea">文件拖到这里</div>
-          <div class="info">
-              <input type="hidden" id="count" name="">
-              <canvas width="450" height="20"></canvas>
-              <div id="result">
-
+        <div id="dropArea">
+          <form id="form1" action="{:U('index/upload')}" method="post" enctype="multipart/form-data">
+              <div>
+                <span id="spanButtonPlaceHolder">上传文件</span>
+                <input id="btnCancel" type="button" value=""  disabled="disabled" style="display:none;" />
+                <span class="btn"></span>
               </div>
-          </div>
+          </form>
+
+        </div>
+        <div class="info">
+            <div id="result">
+
+            </div>
+        </div>
       </div>
       <div class="progressbar" data-perc="{$disk['percent']}">
         <div class="bar" style="width: 0px;">
@@ -151,7 +220,4 @@
         <div style="position: fixed;bottom:0;color:white;">总配额：{$disk['vol']}G;当前使用：{$disk['used']}M;剩：{$disk['free']}M</div>
       </div>
     </body>
-    <script src="./Public/js/upload.js"></script>
-    <link rel="stylesheet" href="./Public/css/progressbar.css">
-    <script src="./Public/js/progressbar.js"></script>
 </html>

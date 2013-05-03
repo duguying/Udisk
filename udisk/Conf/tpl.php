@@ -24,8 +24,12 @@ function isHTML4() {
 	return $isOld;
 }
 
+// if (true) {
+// 	return 'wap';
+// }
 if (isHTML4()) {
 	return 'html4';
 }else {
+	return 'html4';
 	return 'html5';
 }
