@@ -136,28 +136,30 @@
             position: relative;
             top: 35%;
           }
-          .btn{
+          .swfupload{
             position:absolute;
-            width:30%;
-            height:23%;
+            /*width:30%;
+            height:23%;*/
+            left: 36%;
+            top: 36%;
             border: 1px solid blue;
-            background: #1A89F4;
-            cursor: pointer;
-            color: #FFFFFF;
+            /*background: #1A89F4;*/
+            /*cursor: pointer;*/
+            /*color: #FFFFFF;*/
           }
       </style>
       <script type="text/javascript" src="{$root}Public/swfupload/swfupload.js"></script>
-<script type="text/javascript" src="{$root}Public/js/swfupload.queue.js"></script>
-<script type="text/javascript" src="{$root}Public/js/fileprogress.js"></script>
-<script type="text/javascript" src="{$root}Public/js/handlers.js"></script>
-<script type="text/javascript">
+      <script type="text/javascript" src="{$root}Public/js/swfupload.queue.js"></script>
+      <script type="text/javascript" src="{$root}Public/js/fileprogress.js"></script>
+      <script type="text/javascript" src="{$root}Public/js/handlers.js"></script>
+      <script type="text/javascript">
     var swfu;
 
     window.onload = function() {
       var settings = {
         flash_url : "{$root}Public/swfupload/swfupload.swf",
         upload_url: "{:U('index/upload')}",
-        file_size_limit : "100 MB",
+        file_size_limit : "10 MB",
         file_types : "*.*",
         file_types_description : "All Files",
         file_upload_limit : 100,
@@ -169,12 +171,12 @@
         debug: false,
 
         // Button settings
-        // button_image_url: "{$root}Public/images/TestImageNoText_65x29.png",
-        button_width: "65",
-        button_height: "29",
+        button_image_url: "{$root}Public/img/btn.png",
+        button_width: "156",
+        button_height: "41",
         button_placeholder_id: "spanButtonPlaceHolder",
-        button_text: '上传文件',
-        button_text_style: ".theFont { font-size: 16; }",
+        button_text: '',
+        button_text_style: ".theFont { font-size: 16;}",
         button_text_left_padding: 12,
         button_text_top_padding: 3,
         
@@ -200,9 +202,8 @@
         <div id="dropArea">
           <form id="form1" action="{:U('index/upload')}" method="post" enctype="multipart/form-data">
               <div>
-                <span id="spanButtonPlaceHolder">上传文件</span>
+                <span class="btn" id="spanButtonPlaceHolder"></span>
                 <input id="btnCancel" type="button" value=""  disabled="disabled" style="display:none;" />
-                <span class="btn"></span>
               </div>
           </form>
 
@@ -217,7 +218,7 @@
         <div class="bar" style="width: 0px;">
           <span></span>
         </div>
-        <div style="position: fixed;bottom:0;color:white;">总配额：{$disk['vol']}G;当前使用：{$disk['used']}M;剩：{$disk['free']}M</div>
+        <div style="position: fixed;bottom:0;color:black;">总配额：{$disk['vol']}G;当前使用：{$disk['used']}M;剩：{$disk['free']}M</div>
       </div>
     </body>
 </html>
