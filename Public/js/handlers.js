@@ -11,6 +11,7 @@ The FileProgress class is not part of SWFUpload.
    package.  They are part of my application.  Without these none
    of the actions SWFUpload makes will show up in my application.
    ********************** */
+var jq=$.noConflict();
 function fileQueued(file) {
 	try {
 		var progress = new FileProgress(file, this.customSettings.progressTarget);
@@ -106,12 +107,10 @@ function uploadSuccess(file, serverData) {
 		progress.setComplete();
 		progress.setStatus("Complete.");
 		progress.toggleCancel(false);
-
 	} catch (ex) {
 		this.debug(ex);
 	}
-	// console.log(serverData);
-	document.getElementById("result").innerHTML=serverData;
+	jq("#result").html(serverData);
 }
 
 function uploadError(file, errorCode, message) {

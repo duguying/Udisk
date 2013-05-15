@@ -1,5 +1,9 @@
 <?php
 class IndexAction extends Action {
+    function _empty(){ 
+        header("HTTP/1.0 404 Not Found");//使HTTP返回404状态码 
+        $this->show("404:页面不存在");
+    } 
 	public function __construct(){
 		$this->assign('root', C('WWW_PATH'));
 	}
@@ -16,6 +20,7 @@ class IndexAction extends Action {
     }
     public function upload(){
 //         dump($_FILES);
+        C('SHOW_PAGE_TRACE',false);
     	import('@.disk.store');
     	try {
     		$result=store::UPLOAD();
@@ -34,17 +39,5 @@ class IndexAction extends Action {
     	} catch (Exception $e) {
     		$this->show($e->getMessage());
     	}
-    }
-    public function xml() {
-    	$m=M('config');
-    	$d=$m->select();
-    	import('@.disk.config');
-    	$this->ajaxReturn($d,'xml');
-    }
-    function p404() {
-    	header('location:http://yibo.iyiyun.com/Home/js/yibo404');
-    }
-    function test1() {
-    	$this->display('upload');
     }
 }

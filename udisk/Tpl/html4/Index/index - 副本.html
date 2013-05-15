@@ -3,7 +3,7 @@
   <head>
         <meta charset="utf-8" />
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-        <title>云U盘4</title>
+        <title>云U盘44444</title>
       <style>
           *{
               margin: 0;
@@ -66,9 +66,12 @@
           .navbarlist ul{
             display:none;
           }
+
+
           .upload_form_cont {
               color: #000;
           }
+
           #dropArea {
               background-color: #DDDDDD;
               border: 3px dashed #000000;
@@ -86,6 +89,7 @@
           }
           .info {
               position: relative;
+              /*border: 1px solid #DDDDDD;*/
               height: auto;
               margin: 0px auto;
               margin-top: 10px;
@@ -103,6 +107,8 @@
               margin-bottom: 10px;
               padding: 10px;
               border-radius:10px;
+              -moz-border-radius:10px;
+              -webkit-border-radius:10px;
           }
           #result .s {
               background-color: #77fc9f;
@@ -112,6 +118,11 @@
           }
           #result li{
               list-style: none;
+          }
+          #fform{
+            display: block;
+            width: 100%;
+            height: 100%;
           }
           #choose_btn{
             display: block;
@@ -125,72 +136,26 @@
             position: relative;
             top: 35%;
           }
-          .swfupload{
+          .btn{
             position:absolute;
-            left: 36%;
-            top: 36%;
+            width:30%;
+            height:23%;
+            border: 1px solid blue;
+            background: #1A89F4;
+            cursor: pointer;
+            color: #FFFFFF;
           }
       </style>
-       <script type="text/javascript" src="{$root}Public/js/jquery-1.8.0.min.js"></script>
-      <script type="text/javascript" src="{$root}Public/swfupload/swfupload.js"></script>
-      <script type="text/javascript" src="{$root}Public/js/swfupload.queue.js"></script>
-      <script type="text/javascript" src="{$root}Public/js/fileprogress.js"></script>
-      <script type="text/javascript" src="{$root}Public/js/handlers.js"></script>
-      <script type="text/javascript">
-    var swfu;
-
-    window.onload = function() {
-      var settings = {
-        flash_url : "{$root}Public/swfupload/swfupload.swf",
-        upload_url: "{:U('index/upload')}",
-        file_size_limit : "10 MB",
-        file_types : "*.*",
-        file_types_description : "All Files",
-        file_upload_limit : 1,
-        file_queue_limit : 0,
-        custom_settings : {
-          progressTarget : "fsUploadProgress",
-          cancelButtonId : "btnCancel"
-        },
-        debug: false,
-
-        // Button settings
-        button_image_url: "{$root}Public/img/btn.png",
-        button_width: "156",
-        button_height: "41",
-        button_placeholder_id: "spanButtonPlaceHolder",
-        button_text: '',
-        button_text_style: ".theFont { font-size: 16;}",
-        button_text_left_padding: 12,
-        button_text_top_padding: 3,
-        
-        // The event handler functions are defined in handlers.js
-        file_queued_handler : fileQueued,
-        file_queue_error_handler : fileQueueError,
-        file_dialog_complete_handler : fileDialogComplete,
-        upload_start_handler : uploadStart,
-        upload_progress_handler : uploadProgress,
-        upload_error_handler : uploadError,
-        upload_success_handler : uploadSuccess,
-        upload_complete_handler : uploadComplete,
-        queue_complete_handler : queueComplete  // Queue plugin event
-      };
-
-      swfu = new SWFUpload(settings);
-       };
-  </script>
+      <!-- // <script src="./Public/js/jquery-1.8.0.min.js"></script> -->
   </head>
     <body>
       <include file="./udisk/Tpl/html5/nav_head.html" />
       <div class="upload_form_cont">
         <div id="dropArea">
-          <form id="form1" action="{:U('index/upload')}" method="post" enctype="multipart/form-data">
-              <div>
-                <span class="btn" id="spanButtonPlaceHolder"></span>
-                <input id="btnCancel" type="button" value=""  disabled="disabled" style="display:none;" />
-              </div>
+          <form id="fform" name="file" enctype="multipart/form-data" method="post" action="{:U('index/upload')}">
+            <input style="" type="file" name="myfile" id="choose_btn" value="选择文件">
+            <input style="" name="myfile" type="submit" id="submit" value="提交上传" class="btn">
           </form>
-
         </div>
         <div class="info">
             <div id="result">
@@ -202,7 +167,7 @@
         <div class="bar" style="width: 0px;">
           <span></span>
         </div>
-        <div style="position: absolute;bottom:0;color:black;">总配额：{$disk['vol']}G;当前使用：{$disk['used']}M;剩：{$disk['free']}M</div>
+        <div style="position: fixed;bottom:0;color:white;">总配额：{$disk['vol']}G;当前使用：{$disk['used']}M;剩：{$disk['free']}M</div>
       </div>
     </body>
 </html>
